@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Patrick Noonan — Analytics engineer</title>
-<meta name="description" content="Analytics engineer with 15+ years in data. dbt, Looker/Omni, Databricks and Redshift. Available for remote contract and fractional work.">
+<meta name="description" content="Analytics engineer with 15+ years in data. I join small data teams as a long-term contractor and own the data stack end to end: dbt, Looker and Omni, Databricks and Redshift.">
 <meta property="og:title" content="Patrick Noonan — Analytics engineer">
-<meta property="og:description" content="I build the data models, pipelines, and dashboards teams rely on. Available for contract and fractional work.">
+<meta property="og:description" content="A senior analytics engineer who can own your data stack, on a long-term contract.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,8 +54,12 @@ a:hover{text-decoration-thickness:2px}
 .top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;padding:1.5rem 0}
 .name{font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
 nav{display:flex;gap:1.25rem;font-size:.95rem;font-weight:500}
+nav a{white-space:nowrap}
+@media (max-width:30rem){nav{gap:.9rem;font-size:.9rem}}
 nav a{color:var(--muted);text-decoration:none}
 nav a:hover{color:var(--ink);text-decoration:underline}
+nav a.nav-cta{color:var(--sea);border:1.5px solid var(--sea);border-radius:6px;padding:.15rem .7rem}
+nav a.nav-cta:hover{background:var(--sea-soft);text-decoration:none}
 
 /* hero */
 .hero{padding:3.5rem 0 3rem}
@@ -68,8 +72,15 @@ h1{
   max-width:21ch;
 }
 .lede{max-width:var(--measure);margin:0 0 .75rem;font-size:1.2rem}
-.avail{max-width:var(--measure);margin:0 0 1.75rem;color:var(--muted);font-size:1rem}
-.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:3rem}
+.stack{max-width:var(--measure);margin:0 0 .75rem;color:var(--muted)}
+.avail{max-width:var(--measure);margin:0 0 1.75rem;color:var(--muted);font:500 .95rem/1.5 "Bricolage Grotesque",Arial,sans-serif}
+
+/* evidence strip */
+.proof{list-style:none;margin:0 0 2.75rem;padding:1.5rem 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.5rem 2.5rem;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.proof strong{display:block;font:700 clamp(1.5rem,3vw,1.9rem)/1.1 "Bricolage Grotesque",Arial,sans-serif;letter-spacing:-.02em;color:var(--sea);margin-bottom:.35rem}
+.proof span{display:block;font-size:1rem;line-height:1.5;color:var(--muted)}
+@media (max-width:40rem){.proof{grid-template-columns:1fr}}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:2.5rem}
 .btn{
   display:inline-block;padding:.7rem 1.15rem;border-radius:6px;
   font-weight:600;font-size:1rem;text-decoration:none;line-height:1.2;
@@ -81,7 +92,7 @@ h1{
 .btn.secondary:hover{background:var(--sea-soft)}
 
 /* lineage diagram */
-.dag{display:block;width:100%;height:auto;max-width:46rem}
+.dag{display:block;width:100%;height:auto;max-width:40rem}
 .dag .edge{stroke:var(--muted);stroke-opacity:.55;stroke-width:1.5;fill:none}
 .dag .node{fill:var(--paper);stroke:var(--ink);stroke-width:1.75}
 .dag .node.out{fill:var(--sea);stroke:var(--sea)}
@@ -100,7 +111,8 @@ p{margin:0 0 1rem}
 .section-intro{max-width:var(--measure);color:var(--muted);margin-bottom:2rem}
 
 #services{background:var(--sea-soft);border:0;border-radius:10px;padding:2.5rem 2.25rem;margin:0 0 1rem}
-#services h2{margin-bottom:1.75rem}
+#services h2{margin-bottom:.5rem}
+.services-intro{max-width:var(--measure);color:var(--muted);margin:0 0 1.75rem}
 .offers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 2.5rem}
 .offers li{border-top:2px solid var(--sea);padding-top:.9rem}
 .offers h3{font-size:1.15rem;margin:0 0 .4rem}
@@ -145,6 +157,10 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
   .about img{max-width:9rem;order:-1}
 }
 .contact-line{margin-top:1.5rem}
+.contact-lede{max-width:var(--measure);font-size:1.2rem}
+.contact-direct{font:600 1.35rem/1.3 "Bricolage Grotesque",Arial,sans-serif;margin:0 0 1.5rem}
+.contact-direct a{text-decoration:none}
+.contact-direct a:hover{text-decoration:underline}
 
 footer{border-top:1px solid var(--rule);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
 footer p{margin:0 0 .4rem}
@@ -156,23 +172,30 @@ footer p{margin:0 0 .4rem}
   <header class="top">
     <a class="name" href="#top">Patrick Noonan</a>
     <nav aria-label="Primary">
-      <a href="#services">Services</a>
+      <a href="#services">What I do</a>
       <a href="#work">Work</a>
       <a href="#writing">Writing</a>
       <a href="#about">About</a>
-      <a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Contact</a>
     </nav>
   </header>
 
   <main id="top">
     <div class="hero">
-      <h1>I build the data models, pipelines, and dashboards teams rely on.</h1>
-      <p class="lede">Analytics engineer with 15+ years in data. I work mostly in SQL, Python, dbt, Looker, Omni, Databricks, and Redshift, and I get up to speed quickly on whatever BI tool or warehouse your team already uses. Available for contract and fractional work.</p>
-      <p class="avail">U.S. citizen based in Spain. Working hours overlap 6 AM to 3 PM Eastern.</p>
+      <h1>A senior analytics engineer who can own your data stack.</h1>
+      <p class="lede">With 15+ years in data, I join small data teams as an embedded contractor, often as the first or second data hire, and own the work end to end: the dbt project, the pipelines, the dashboards, and the conversations with the people who use them.</p>
+      <p class="stack">I work mostly in SQL, Python, dbt, Looker, Omni, Databricks, and Redshift, and get up to speed quickly on whatever your team already uses.</p>
+      <p class="avail">U.S. citizen based in Spain · 1099 contractor · Available 6 AM to 3 PM Eastern</p>
       <div class="actions">
         <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
         <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
       </div>
+
+      <ul class="proof" aria-label="Highlights">
+        <li><strong>Nearly 6 years</strong><span>as the analytics engineer at one health-tech company, owning its data stack</span></li>
+        <li><strong>Looker to Omni, start to finish</strong><span>Evaluated the options, rebuilt the semantic layer, moved the client dashboards, and trained the users</span></li>
+        <li><strong>2M+ vaccines and tests</strong><span>delivered by health workers at 800+ sites using dashboards and metrics I built</span></li>
+      </ul>
 
       <svg class="dag" viewBox="0 0 760 236" role="img" aria-labelledby="dag-title">
         <title id="dag-title">Diagram of data flowing from raw sources through staging and intermediate models to fact and dimension models, then to dashboards</title>
@@ -229,27 +252,24 @@ footer p{margin:0 0 .4rem}
     </div>
 
     <section id="services" aria-labelledby="services-h">
-      <h2 id="services-h">What I take on</h2>
+      <h2 id="services-h">What I own</h2>
+      <p class="services-intro">On a small team, I take ownership of the data stack day to day.</p>
       <ul class="offers">
         <li>
-          <h3>Building, owning, or cleaning up a dbt project</h3>
-          <p>Day-to-day model development and ownership, plus the conventions, testing, and governance that let the team trust and extend it.</p>
+          <h3>Pipelines</h3>
+          <p>Ingestion, transformation, and automated syncs on Databricks and Redshift, with alerting when something fails.</p>
         </li>
         <li>
-          <h3>Dashboards built around the question</h3>
-          <p>I start with your team or your clients: what decision they’re making and what they need to see. Then I build the metrics and dashboards that answer it.</p>
+          <h3>The dbt project, end to end</h3>
+          <p>Models, testing, and governance the team can trust and extend, plus the scheduling, CI, and deployment around them, including moving off dbt Cloud to dbt Core.</p>
         </li>
         <li>
-          <h3>Looker and Omni semantic layers and migrations</h3>
-          <p>LookML and Omni modeling, administration, and moving from one BI tool to another without losing what people rely on.</p>
+          <h3>The BI layer</h3>
+          <p>Looker and Omni semantic layers and administration, including migrating between tools without losing what people rely on.</p>
         </li>
         <li>
-          <h3>Pipeline architecture on Databricks and Redshift</h3>
-          <p>Ingestion, transformation, automated syncs, and alerting when something fails.</p>
-        </li>
-        <li>
-          <h3>Moving off dbt Cloud to dbt Core</h3>
-          <p>Scheduling, CI, and deployment on infrastructure you already pay for.</p>
+          <h3>Dashboards and metrics</h3>
+          <p>I start with the people using them: what decision they’re making and what they need to see. Then I build the metrics and dashboards that answer it.</p>
         </li>
       </ul>
     </section>
@@ -273,7 +293,7 @@ footer p{margin:0 0 .4rem}
 
       <article class="case">
         <h3>Looker to Omni migration</h3>
-        <p class="context">A healthcare software platform whose dashboards served health workers at 800+ physical sites. The goal was to cut BI costs without disrupting the clients who relied on those dashboards.</p>
+        <p class="context">A healthcare software platform whose dashboards helped health workers at 800+ physical sites deliver 2M+ vaccines and tests. The goal was to cut BI costs without disrupting the clients who relied on those dashboards.</p>
         <dl>
           <dt>Choosing the tool</dt>
           <dd>Evaluated three to four BI tools and chose Omni for its features, functionality, and semantic layer.</dd>
@@ -357,9 +377,9 @@ footer p{margin:0 0 .4rem}
 
     <section id="contact" aria-labelledby="contact-h">
       <h2 id="contact-h">Contact</h2>
-      <p style="max-width:var(--measure)">If your team needs help with a dbt project, a BI build or migration, or a data pipeline, send me a note with what you’re working on.</p>
+      <p class="contact-lede">If you’re building out a small data team and need someone who can own it for the long haul, or an experienced contributor to support your lead, I’d like to hear from you. I’m also open to well-scoped projects.</p>
+      <p class="contact-direct"><a href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">psnoonan@gmail.com</a></p>
       <div class="actions" style="margin-bottom:0">
-        <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
         <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
       </div>
     </section>
