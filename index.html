@@ -105,6 +105,7 @@ p{margin:0 0 1rem}
 .offers li{border-top:2px solid var(--sea);padding-top:.9rem}
 .offers h3{font-size:1.15rem;margin:0 0 .4rem}
 .offers p{margin:0;max-width:34rem}
+.offers li:last-child:nth-child(odd){grid-column:1/-1}
 @media (max-width:40rem){
   #services{padding:2rem 1.25rem}
   .offers{grid-template-columns:1fr}
@@ -166,7 +167,7 @@ footer p{margin:0 0 .4rem}
   <main id="top">
     <div class="hero">
       <h1>I build the data models, pipelines, and dashboards teams rely on.</h1>
-      <p class="lede">Analytics engineer with 15+ years in data. I work in dbt, Looker and Omni, Databricks and Redshift, and I’m available for contract and fractional work.</p>
+      <p class="lede">Analytics engineer with 15+ years in data. I work mostly in SQL, Python, dbt, Looker, Omni, Databricks, and Redshift, and I get up to speed quickly on whatever BI tool or warehouse your team already uses. Available for contract and fractional work.</p>
       <p class="avail">U.S. citizen based in Spain. Working hours overlap 6 AM to 3 PM Eastern.</p>
       <div class="actions">
         <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
@@ -231,12 +232,16 @@ footer p{margin:0 0 .4rem}
       <h2 id="services-h">What I take on</h2>
       <ul class="offers">
         <li>
-          <h3>Standing up or cleaning up a dbt project</h3>
-          <p>Modeling conventions, testing, and governance so the analytics team can trust and extend it.</p>
+          <h3>Building, owning, or cleaning up a dbt project</h3>
+          <p>Day-to-day model development and ownership, plus the conventions, testing, and governance that let the team trust and extend it.</p>
         </li>
         <li>
-          <h3>Looker and Omni build-outs and migrations</h3>
-          <p>Dashboards, metrics, and administration, including moving from one BI tool to the other.</p>
+          <h3>Dashboards built around the question</h3>
+          <p>I start with your team or your clients: what decision they’re making and what they need to see. Then I build the metrics and dashboards that answer it.</p>
+        </li>
+        <li>
+          <h3>Looker and Omni semantic layers and migrations</h3>
+          <p>LookML and Omni modeling, administration, and moving from one BI tool to another without losing what people rely on.</p>
         </li>
         <li>
           <h3>Pipeline architecture on Databricks and Redshift</h3>
@@ -268,13 +273,18 @@ footer p{margin:0 0 .4rem}
 
       <article class="case">
         <h3>Looker to Omni migration</h3>
-        <p class="context">A healthcare software platform whose dashboards serve health workers at 800+ physical sites.</p>
+        <p class="context">A healthcare software platform whose dashboards served health workers at 800+ physical sites. The goal was to cut BI costs without disrupting the clients who relied on those dashboards.</p>
         <dl>
-          <dt>My role</dt>
-          <dd>I led the migration of the analytics layer from Looker to Omni.</dd>
-          <!-- TODO (Patrick): add 2-3 real specifics here: what drove the move, how you cut over, what changed for users. Leave out anything you can't stand behind. -->
+          <dt>Choosing the tool</dt>
+          <dd>Evaluated three to four BI tools and chose Omni for its features, functionality, and semantic layer.</dd>
+          <dt>Scoping</dt>
+          <dd>Pulled reports from Looker to map the existing reporting, then worked with product managers and client services to decide what to port and what to retire.</dd>
+          <dt>Building</dt>
+          <dd>Rebuilt the semantic layer in Omni from the LookML, moved logic out of Looker PDTs and into dbt, and recreated the client dashboards.</dd>
+          <dt>Rollout</dt>
+          <dd>Led client trainings so users moved over smoothly.</dd>
           <dt>Tools</dt>
-          <dd>Looker, LookML, Omni</dd>
+          <dd>Looker, LookML, Omni, dbt</dd>
         </dl>
       </article>
 
@@ -296,20 +306,13 @@ footer p{margin:0 0 .4rem}
         <p class="context">The dbt Cloud Enterprise plan cost five figures a year, and the team already paid for the infrastructure that could replace each piece of it: Databricks, GitHub, and AWS.</p>
         <dl>
           <dt>Scheduling</dt>
-          <dd>Databricks Workflows’ native dbt task replaces the dbt Cloud scheduler. Daily, weekly, and monthly runs use tag selectors across separate jobs, because Databricks allows one schedule per job.</dd>
+          <dd>Databricks Workflows’ native dbt task replaces the dbt Cloud scheduler, with daily, weekly, and monthly runs split by tag.</dd>
           <dt>CI</dt>
-          <dd>
-            <p>GitHub Actions runs <code>dbt build --select state:modified+ --defer</code> on every pull request, testing only what changed against a temporary schema.</p>
-            <p>The native dbt task can’t run shell commands or share files with other tasks, so a separate Databricks notebook task refreshes the production manifest in S3 after each production run.</p>
-          </dd>
+          <dd>GitHub Actions builds and tests only the models each pull request changes, in a temporary schema, compared against a production manifest kept current in S3.</dd>
           <dt>Validation</dt>
-          <dd>The same failing test failed identically on dbt Cloud and dbt Core against real data, which confirmed the two engines behave the same before I built further.</dd>
+          <dd>Confirmed parity between dbt Cloud and dbt Core with automated tests and by comparing the manifest before and after the switch.</dd>
           <dt>Result so far</dt>
           <dd>CI has already caught a real bug before merge: a column removed from one dimension table silently broke a model three hops downstream.</dd>
-          <dt>Still open</dt>
-          <dd>Enforcing branch protection, rebuilding production automatically after merges, and replacing Cloud’s Slack alerts and source freshness checks.</dd>
-          <dt>Takeaway</dt>
-          <dd>Most of the friction was in the seams between tools, not in dbt itself: task types that can’t quite do what you need, and compute that doesn’t share state. I budget time for that now.</dd>
         </dl>
       </article>
     </section>
@@ -344,9 +347,9 @@ footer p{margin:0 0 .4rem}
       <h2 id="about-h">About</h2>
       <div class="about">
         <div>
-          <p>I’m an analytics engineer based in Dénia, on Spain’s Costa Blanca, with 15+ years in data. I started in ad operations at Pandora and moved through analytics into finance and planning, then into dbt, Looker, and Omni work on a health-tech platform.</p>
-          <p>I’m a U.S. citizen who has worked fully remote since moving to Spain in 2016, including remote data roles since 2020 for U.S. teams. My hours overlap with U.S. Eastern from 6 AM to 3 PM, and I’m comfortable with 1099 contract arrangements. For nearly five years I also mentored data analytics students at CareerFoundry, and I helped dozens of them land data jobs.</p>
-          <p>I’m certified in analytics engineering with dbt (Uplimit).</p>
+          <p>I’m an analytics engineer based in Dénia, Spain, with 15+ years in data. I started at Pandora Internet Radio, growing from ad operations into a senior data analyst role supporting FP&amp;A. Since 2020 I’ve worked fully remote, both on larger data teams and as a team of one, owning the stack end to end. That means wearing a lot of hats: data engineer, analytics engineer, analyst, dashboard builder, and client-facing partner.</p>
+          <p>The work I enjoy most is bringing structure to messy data: defining metrics and the governance around them, automating the manual processes teams get stuck with, and setting up data quality alerts so problems get caught before they reach a dashboard. With stakeholders, I like building what actually helps: sometimes a full dashboard that informs their decisions, sometimes just a scheduled CSV export that replaces a manual step.</p>
+          <p>I’m a U.S. citizen, my hours overlap with U.S. Eastern from 6 AM to 3 PM, and I’m comfortable with 1099 contract arrangements. For nearly five years I also mentored data analytics students at CareerFoundry, and I helped dozens of them land data jobs.</p>
         </div>
         <img src="assets/patrick.jpg" alt="Portrait of Patrick Noonan" onerror="this.remove()">
       </div>
@@ -363,7 +366,7 @@ footer p{margin:0 0 .4rem}
   </main>
 
   <footer>
-    <p>Beyond work, I write about ultra-distance bikepacking and long rides at <a href="https://thevanbun.com/category/ulta-endurance/" target="_blank" rel="noopener noreferrer">TheVanBun.com</a>.</p>
+    <p>Beyond work, I enjoy documenting my ultra-endurance bikepacking adventures with words and pictures at <a href="https://thevanbun.com/category/ulta-endurance/" target="_blank" rel="noopener noreferrer">TheVanBun.com</a>.</p>
     <p>© 2026 Patrick Noonan</p>
   </footer>
 </div>
