@@ -85,6 +85,7 @@ h1{
 .dag .edge{stroke:var(--muted);stroke-opacity:.55;stroke-width:1.5;fill:none}
 .dag .node{fill:var(--paper);stroke:var(--ink);stroke-width:1.75}
 .dag .node.out{fill:var(--sea);stroke:var(--sea)}
+.dag .node.mart{stroke:var(--sea)}
 .dag text{font-family:"Bricolage Grotesque",Arial,sans-serif;font-size:13px;fill:var(--muted);text-anchor:middle}
 @media (prefers-reduced-motion:no-preference){
   .dag .edge{stroke-dasharray:1;stroke-dashoffset:1;animation:draw .9s ease-out forwards;animation-delay:var(--d,0s)}
@@ -98,10 +99,16 @@ h3{margin:0 0 .35rem;font-size:1.3rem;line-height:1.25;letter-spacing:-.01em;fon
 p{margin:0 0 1rem}
 .section-intro{max-width:var(--measure);color:var(--muted);margin-bottom:2rem}
 
-.offers{list-style:none;margin:0;padding:0;max-width:var(--measure)}
-.offers li{padding:.9rem 0;border-bottom:1px solid var(--rule)}
-.offers li:first-child{padding-top:0}
-.offers strong{font-weight:600}
+#services{background:var(--sea-soft);border:0;border-radius:10px;padding:2.5rem 2.25rem;margin:0 0 1rem}
+#services h2{margin-bottom:1.75rem}
+.offers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2rem 2.5rem}
+.offers li{border-top:2px solid var(--sea);padding-top:.9rem}
+.offers h3{font-size:1.15rem;margin:0 0 .4rem}
+.offers p{margin:0;max-width:34rem}
+@media (max-width:40rem){
+  #services{padding:2rem 1.25rem}
+  .offers{grid-template-columns:1fr}
+}
 
 /* case studies */
 .case{padding:2rem 0;border-bottom:1px solid var(--rule)}
@@ -162,56 +169,83 @@ footer p{margin:0 0 .4rem}
       <p class="lede">Analytics engineer with 15+ years in data. I work in dbt, Looker and Omni, Databricks and Redshift, and I’m available for contract and fractional work.</p>
       <p class="avail">U.S. citizen based in Spain. Working hours overlap 6 AM to 3 PM Eastern.</p>
       <div class="actions">
-        <a class="btn primary" href="mailto:psnoonan@gmail.com">Email me</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan">View LinkedIn</a>
+        <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
       </div>
 
-      <svg class="dag" viewBox="0 0 760 200" role="img" aria-labelledby="dag-title">
-        <title id="dag-title">Diagram of data flowing from raw sources through staging models and marts to dashboards</title>
-        <!-- sources -> staging -->
-        <g style="--d:.0s">
-          <line class="edge" pathLength="1" x1="70" y1="40" x2="270" y2="40" style="--d:.0s"/>
-          <line class="edge" pathLength="1" x1="70" y1="90" x2="270" y2="90" style="--d:.1s"/>
-          <line class="edge" pathLength="1" x1="70" y1="140" x2="270" y2="140" style="--d:.2s"/>
-          <line class="edge" pathLength="1" x1="70" y1="40" x2="270" y2="90" style="--d:.15s"/>
-          <line class="edge" pathLength="1" x1="70" y1="140" x2="270" y2="90" style="--d:.25s"/>
-        </g>
-        <!-- staging -> marts -->
-        <g>
-          <line class="edge" pathLength="1" x1="270" y1="40" x2="490" y2="65" style="--d:.45s"/>
-          <line class="edge" pathLength="1" x1="270" y1="90" x2="490" y2="65" style="--d:.5s"/>
-          <line class="edge" pathLength="1" x1="270" y1="90" x2="490" y2="115" style="--d:.55s"/>
-          <line class="edge" pathLength="1" x1="270" y1="140" x2="490" y2="115" style="--d:.6s"/>
-        </g>
-        <!-- marts -> dashboards -->
-        <g>
-          <line class="edge" pathLength="1" x1="490" y1="65" x2="690" y2="90" style="--d:.8s"/>
-          <line class="edge" pathLength="1" x1="490" y1="115" x2="690" y2="90" style="--d:.85s"/>
-        </g>
-        <!-- nodes -->
-        <circle class="node" cx="70" cy="40" r="9"/>
-        <circle class="node" cx="70" cy="90" r="9"/>
-        <circle class="node" cx="70" cy="140" r="9"/>
-        <circle class="node" cx="270" cy="40" r="9"/>
-        <circle class="node" cx="270" cy="90" r="9"/>
-        <circle class="node" cx="270" cy="140" r="9"/>
-        <circle class="node" cx="490" cy="65" r="9"/>
-        <circle class="node" cx="490" cy="115" r="9"/>
-        <circle class="node out" cx="690" cy="90" r="12"/>
-        <text x="70" y="182">Raw sources</text>
-        <text x="270" y="182">Staging models</text>
-        <text x="490" y="182">Marts</text>
-        <text x="690" y="182">Dashboards</text>
+      <svg class="dag" viewBox="0 0 760 236" role="img" aria-labelledby="dag-title">
+        <title id="dag-title">Diagram of data flowing from raw sources through staging and intermediate models to fact and dimension models, then to dashboards</title>
+        <line class="edge" pathLength="1" x1="60" y1="46.7" x2="225" y2="20.0" style="--d:0.0s"/>
+        <line class="edge" pathLength="1" x1="60" y1="46.7" x2="225" y2="46.7" style="--d:0.035s"/>
+        <line class="edge" pathLength="1" x1="60" y1="46.7" x2="225" y2="73.3" style="--d:0.07s"/>
+        <line class="edge" pathLength="1" x1="60" y1="100.0" x2="225" y2="73.3" style="--d:0.105s"/>
+        <line class="edge" pathLength="1" x1="60" y1="100.0" x2="225" y2="100.0" style="--d:0.14s"/>
+        <line class="edge" pathLength="1" x1="60" y1="100.0" x2="225" y2="126.7" style="--d:0.175s"/>
+        <line class="edge" pathLength="1" x1="60" y1="153.3" x2="225" y2="126.7" style="--d:0.21s"/>
+        <line class="edge" pathLength="1" x1="60" y1="153.3" x2="225" y2="153.3" style="--d:0.245s"/>
+        <line class="edge" pathLength="1" x1="60" y1="153.3" x2="225" y2="180.0" style="--d:0.28s"/>
+        <line class="edge" pathLength="1" x1="225" y1="20.0" x2="400" y2="60.0" style="--d:0.4s"/>
+        <line class="edge" pathLength="1" x1="225" y1="46.7" x2="400" y2="60.0" style="--d:0.435s"/>
+        <line class="edge" pathLength="1" x1="225" y1="73.3" x2="400" y2="60.0" style="--d:0.47s"/>
+        <line class="edge" pathLength="1" x1="225" y1="73.3" x2="400" y2="100.0" style="--d:0.505s"/>
+        <line class="edge" pathLength="1" x1="225" y1="100.0" x2="400" y2="100.0" style="--d:0.54s"/>
+        <line class="edge" pathLength="1" x1="225" y1="126.7" x2="400" y2="100.0" style="--d:0.575s"/>
+        <line class="edge" pathLength="1" x1="225" y1="153.3" x2="400" y2="100.0" style="--d:0.61s"/>
+        <line class="edge" pathLength="1" x1="225" y1="126.7" x2="400" y2="140.0" style="--d:0.645s"/>
+        <line class="edge" pathLength="1" x1="225" y1="153.3" x2="400" y2="140.0" style="--d:0.68s"/>
+        <line class="edge" pathLength="1" x1="225" y1="180.0" x2="400" y2="140.0" style="--d:0.715s"/>
+        <line class="edge" pathLength="1" x1="400" y1="60.0" x2="565" y2="72.0" style="--d:0.85s"/>
+        <line class="edge" pathLength="1" x1="400" y1="60.0" x2="565" y2="100.0" style="--d:0.885s"/>
+        <line class="edge" pathLength="1" x1="400" y1="100.0" x2="565" y2="100.0" style="--d:0.92s"/>
+        <line class="edge" pathLength="1" x1="400" y1="140.0" x2="565" y2="100.0" style="--d:0.955s"/>
+        <line class="edge" pathLength="1" x1="400" y1="140.0" x2="565" y2="128.0" style="--d:0.99s"/>
+        <line class="edge" pathLength="1" x1="565" y1="72.0" x2="705" y2="100.0" style="--d:1.2s"/>
+        <line class="edge" pathLength="1" x1="565" y1="100.0" x2="705" y2="100.0" style="--d:1.235s"/>
+        <line class="edge" pathLength="1" x1="565" y1="128.0" x2="705" y2="100.0" style="--d:1.27s"/>
+        <circle class="node" cx="60" cy="46.7" r="8"/>
+        <circle class="node" cx="60" cy="100.0" r="8"/>
+        <circle class="node" cx="60" cy="153.3" r="8"/>
+        <circle class="node" cx="225" cy="20.0" r="7"/>
+        <circle class="node" cx="225" cy="46.7" r="7"/>
+        <circle class="node" cx="225" cy="73.3" r="7"/>
+        <circle class="node" cx="225" cy="100.0" r="7"/>
+        <circle class="node" cx="225" cy="126.7" r="7"/>
+        <circle class="node" cx="225" cy="153.3" r="7"/>
+        <circle class="node" cx="225" cy="180.0" r="7"/>
+        <circle class="node" cx="400" cy="60.0" r="8"/>
+        <circle class="node" cx="400" cy="100.0" r="8"/>
+        <circle class="node" cx="400" cy="140.0" r="8"/>
+        <circle class="node mart" cx="565" cy="72.0" r="10"/>
+        <circle class="node mart" cx="565" cy="100.0" r="10"/>
+        <circle class="node mart" cx="565" cy="128.0" r="10"/>
+        <circle class="node out" cx="705" cy="100.0" r="13"/>
+        <text x="60" y="218">Raw sources</text>
+        <text x="225" y="218">Staging</text>
+        <text x="400" y="218">Intermediate</text>
+        <text x="565" y="218">Facts and dimensions</text>
+        <text x="705" y="218">Dashboards</text>
       </svg>
     </div>
 
     <section id="services" aria-labelledby="services-h">
       <h2 id="services-h">What I take on</h2>
       <ul class="offers">
-        <li><strong>Standing up or cleaning up a dbt project.</strong> Modeling conventions, testing, and governance so the analytics team can trust and extend it.</li>
-        <li><strong>Looker and Omni build-outs and migrations.</strong> Dashboards, metrics, and administration, including moving from one BI tool to the other.</li>
-        <li><strong>Pipeline architecture on Databricks and Redshift.</strong> Ingestion, transformation, automated syncs, and alerting when something fails.</li>
-        <li><strong>Moving off dbt Cloud to dbt Core.</strong> Scheduling, CI, and deployment on infrastructure you already pay for.</li>
+        <li>
+          <h3>Standing up or cleaning up a dbt project</h3>
+          <p>Modeling conventions, testing, and governance so the analytics team can trust and extend it.</p>
+        </li>
+        <li>
+          <h3>Looker and Omni build-outs and migrations</h3>
+          <p>Dashboards, metrics, and administration, including moving from one BI tool to the other.</p>
+        </li>
+        <li>
+          <h3>Pipeline architecture on Databricks and Redshift</h3>
+          <p>Ingestion, transformation, automated syncs, and alerting when something fails.</p>
+        </li>
+        <li>
+          <h3>Moving off dbt Cloud to dbt Core</h3>
+          <p>Scheduling, CI, and deployment on infrastructure you already pay for.</p>
+        </li>
       </ul>
     </section>
 
@@ -284,22 +318,22 @@ footer p{margin:0 0 .4rem}
       <h2 id="writing-h">Writing</h2>
       <ul class="pieces">
         <li>
-          <h3><a href="https://medium.com/data-science/use-web-scraping-and-pandas-for-a-market-analysis-esl-teaching-in-spain-75029dd0a1e5">Web scraping and pandas for a market analysis: ESL teaching in Spain</a></h3>
+          <h3><a href="https://medium.com/data-science/use-web-scraping-and-pandas-for-a-market-analysis-esl-teaching-in-spain-75029dd0a1e5" target="_blank" rel="noopener noreferrer">Web scraping and pandas for a market analysis: ESL teaching in Spain</a></h3>
           <p>Python web scraping and competitive analysis of the ESL teaching market in Spain.</p>
           <p class="fine">Originally published on Towards Data Science.</p>
         </li>
         <li>
-          <h3><a href="https://medium.com/data-science/spains-strict-covid-lockdown-visualized-with-folium-maps-mobile-gps-data-gpx-tracks-and-geo-9628e39bfa0e">Spain’s strict COVID lockdown, visualized with Folium maps and mobile GPS data</a></h3>
+          <h3><a href="https://medium.com/data-science/spains-strict-covid-lockdown-visualized-with-folium-maps-mobile-gps-data-gpx-tracks-and-geo-9628e39bfa0e" target="_blank" rel="noopener noreferrer">Spain’s strict COVID lockdown, visualized with Folium maps and mobile GPS data</a></h3>
           <p>Mobile GPS data and personal GPX tracks, mapped with the Folium Python library to show how movement changed under one of Europe’s most restrictive lockdowns.</p>
           <p class="fine">Originally published on Towards Data Science.</p>
         </li>
         <li>
-          <h3><a href="https://medium.com/data-science/build-interactive-gps-activity-maps-from-gpx-files-using-folium-cf9eebba1fe7">Build interactive GPS activity maps from GPX files using Folium</a></h3>
+          <h3><a href="https://medium.com/data-science/build-interactive-gps-activity-maps-from-gpx-files-using-folium-cf9eebba1fe7" target="_blank" rel="noopener noreferrer">Build interactive GPS activity maps from GPX files using Folium</a></h3>
           <p>Turns cycling and hiking tracks exported from services like Strava and Garmin into interactive web maps, using gpxpy, pandas, and Folium in Jupyter notebooks.</p>
           <p class="fine">Originally published on Towards Data Science.</p>
         </li>
         <li>
-          <h3><a href="https://medium.com/data-science/data-mine-a-diary-textblob-and-nlkt-to-analyze-your-personal-journal-a7c73f412acc">Data mine a diary: TextBlob and NLTK to analyze your personal journal</a></h3>
+          <h3><a href="https://medium.com/data-science/data-mine-a-diary-textblob-and-nlkt-to-analyze-your-personal-journal-a7c73f412acc" target="_blank" rel="noopener noreferrer">Data mine a diary: TextBlob and NLTK to analyze your personal journal</a></h3>
           <p>Text analysis of a 17-year personal journal with TextBlob and pandas: word frequency, common phrases, and how the emotional tone of the entries changed over time.</p>
           <p class="fine">Originally published on Towards Data Science.</p>
         </li>
@@ -311,7 +345,7 @@ footer p{margin:0 0 .4rem}
       <div class="about">
         <div>
           <p>I’m an analytics engineer based in Dénia, on Spain’s Costa Blanca, with 15+ years in data. I started in ad operations at Pandora and moved through analytics into finance and planning, then into dbt, Looker, and Omni work on a health-tech platform.</p>
-          <p>I’m a U.S. citizen working remotely, and I’m comfortable with 1099 contract arrangements. For nearly five years I also mentored data analytics students at CareerFoundry, and I helped dozens of them land data jobs.</p>
+          <p>I’m a U.S. citizen who has worked fully remote since moving to Spain in 2016, including remote data roles since 2020 for U.S. teams. My hours overlap with U.S. Eastern from 6 AM to 3 PM, and I’m comfortable with 1099 contract arrangements. For nearly five years I also mentored data analytics students at CareerFoundry, and I helped dozens of them land data jobs.</p>
           <p>I’m certified in analytics engineering with dbt (Uplimit).</p>
         </div>
         <img src="assets/patrick.jpg" alt="Portrait of Patrick Noonan" onerror="this.remove()">
@@ -322,14 +356,14 @@ footer p{margin:0 0 .4rem}
       <h2 id="contact-h">Contact</h2>
       <p style="max-width:var(--measure)">If your team needs help with a dbt project, a BI build or migration, or a data pipeline, send me a note with what you’re working on.</p>
       <div class="actions" style="margin-bottom:0">
-        <a class="btn primary" href="mailto:psnoonan@gmail.com">Email me</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan">View LinkedIn</a>
+        <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/patrickstewartnoonan" target="_blank" rel="noopener noreferrer">View LinkedIn</a>
       </div>
     </section>
   </main>
 
   <footer>
-    <p>Beyond work, I write about ultra-distance bikepacking and long rides at <a href="https://thevanbun.com">TheVanBun.com</a>.</p>
+    <p>Beyond work, I write about ultra-distance bikepacking and long rides at <a href="https://thevanbun.com/category/ulta-endurance/" target="_blank" rel="noopener noreferrer">TheVanBun.com</a>.</p>
     <p>© 2026 Patrick Noonan</p>
   </footer>
 </div>
