@@ -164,6 +164,29 @@ code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:
 
 footer{border-top:1px solid var(--rule);padding:2rem 0 3rem;color:var(--muted);font-size:.95rem}
 footer p{margin:0 0 .4rem}
+
+/* expandable case studies */
+.case details>summary{list-style:none;cursor:pointer;display:block}
+.case details>summary::-webkit-details-marker{display:none}
+.case summary .context{margin-bottom:.6rem}
+.case summary:hover h3{color:var(--sea)}
+.more{font:600 .92rem/1.4 "Bricolage Grotesque",Arial,sans-serif;color:var(--sea)}
+.more::before{content:"Read more"}
+.more::after{content:"";display:inline-block;width:.45em;height:.45em;margin-left:.45em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-.2em) rotate(45deg);transition:transform .2s}
+.case details[open] .more::before{content:"Show less"}
+.case details[open] .more::after{transform:translateY(.05em) rotate(-135deg)}
+.case details[open] dl{margin-top:1.25rem}
+.case{padding:1.5rem 0}
+/* writing toggle */
+.more-pieces{max-width:var(--measure);border-top:1px solid var(--rule);margin-top:1rem}
+.more-pieces>summary{list-style:none;cursor:pointer;padding:1rem 0 0;font:600 .92rem/1.4 "Bricolage Grotesque",Arial,sans-serif;color:var(--sea)}
+.more-pieces>summary::-webkit-details-marker{display:none}
+.more-pieces[open]>summary .more-label{display:none}
+.more-pieces>summary::after{content:"";display:inline-block;width:.45em;height:.45em;margin-left:.45em;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-.2em) rotate(45deg)}
+.more-pieces[open]>summary::after{transform:translateY(.05em) rotate(-135deg)}
+.more-pieces[open]>summary::before{content:"Show fewer articles"}
+.more-pieces .pieces{margin-top:1rem}
+.more-pieces .pieces li:first-child{padding-top:1rem}
 </style>
 </head>
 <body>
@@ -185,7 +208,7 @@ footer p{margin:0 0 .4rem}
     <div class="hero">
       <h1>A senior analytics engineer who can own your data stack.</h1>
       <p class="lede">With 15+ years in data, I join small data teams as an embedded contractor, often as the first or second data hire, and own the work end to end: the dbt project, the pipelines, the dashboards, and the conversations with the people who use them.</p>
-      <p class="stack">I work mostly in SQL, Python, dbt, Looker, Omni, Databricks, and Redshift, and get up to speed quickly on whatever your team already uses.</p>
+      <p class="stack">I work mostly in SQL, Python, dbt, Looker, Omni, Databricks, and Redshift, use Claude Code daily, and get up to speed quickly on whatever your team already uses.</p>
       <p class="avail">U.S. citizen based in Spain · 1099 contractor · Available 6 AM to 3 PM Eastern</p>
       <div class="actions">
         <a class="btn primary" href="mailto:psnoonan@gmail.com" target="_blank" rel="noopener noreferrer">Email me</a>
@@ -266,7 +289,7 @@ footer p{margin:0 0 .4rem}
         </li>
         <li>
           <h3>The BI layer</h3>
-          <p>Looker and Omni semantic layers and administration, including migrating between tools without losing what people rely on.</p>
+          <p>Looker and Omni semantic layers and administration, including migrating between tools without losing what people rely on. A solid semantic layer is also what lets AI tools give trustworthy answers about your data.</p>
         </li>
         <li>
           <h3>Dashboards and metrics</h3>
@@ -280,88 +303,108 @@ footer p{margin:0 0 .4rem}
       <p class="section-intro">Client and employer names are left out on purpose. I’m happy to talk through any of these in more detail.</p>
 
       <article class="case">
-        <h3>Compliance reporting pipeline for a state health department</h3>
-        <p class="context">A state health department client needed newborn-screening data modeled to CDC EHDI standards, and its compliance reporting was done by hand.</p>
-        <dl>
-          <dt>What I built</dt>
-          <dd>A Databricks pipeline and dbt models for the screening data, using Delta Sharing, with automated sync and same-day failure alerting. On top of it, three client-facing Omni dashboards.</dd>
-          <dt>Result</dt>
-          <dd>The dashboards replaced the manual compliance reporting and became the client’s primary reporting tool.</dd>
-          <dt>Tools</dt>
-          <dd>Databricks, Delta Sharing, dbt, Omni</dd>
-        </dl>
+        <details>
+          <summary><h3>Compliance reporting pipeline for a state health department</h3>
+            <p class="context">A state health department client needed newborn-screening data modeled to CDC EHDI standards, and its compliance reporting was done by hand.</p>
+            <span class="more" aria-hidden="true"></span>
+          </summary>
+          <dl>
+            <dt>What I built</dt>
+            <dd>A Databricks pipeline and dbt models for the screening data, using Delta Sharing, with automated sync and same-day failure alerting. On top of it, three client-facing Omni dashboards.</dd>
+            <dt>Result</dt>
+            <dd>The dashboards replaced the manual compliance reporting and became the client’s primary reporting tool.</dd>
+            <dt>Tools</dt>
+            <dd>Databricks, Delta Sharing, dbt, Omni</dd>
+          </dl>
+        </details>
       </article>
 
       <article class="case">
-        <h3>Looker to Omni migration</h3>
-        <p class="context">A healthcare software platform whose dashboards helped health workers at 800+ physical sites deliver 2M+ vaccines and tests. The goal was to cut BI costs without disrupting the clients who relied on those dashboards.</p>
-        <dl>
-          <dt>Choosing the tool</dt>
-          <dd>Evaluated three to four BI tools and chose Omni for its features, functionality, and semantic layer.</dd>
-          <dt>Scoping</dt>
-          <dd>Pulled reports from Looker to map the existing reporting, then worked with product managers and client services to decide what to port and what to retire.</dd>
-          <dt>Building</dt>
-          <dd>Rebuilt the semantic layer in Omni from the LookML, moved logic out of Looker PDTs and into dbt, and recreated the client dashboards.</dd>
-          <dt>Rollout</dt>
-          <dd>Led client trainings so users moved over smoothly.</dd>
-          <dt>Tools</dt>
-          <dd>Looker, LookML, Omni, dbt</dd>
-        </dl>
+        <details>
+          <summary><h3>Looker to Omni migration</h3>
+            <p class="context">A healthcare software platform whose dashboards helped health workers at 800+ physical sites deliver 2M+ vaccines and tests. The goal was to cut BI costs without disrupting the clients who relied on those dashboards.</p>
+            <span class="more" aria-hidden="true"></span>
+          </summary>
+          <dl>
+            <dt>Choosing the tool</dt>
+            <dd>Evaluated three to four BI tools and chose Omni for its features, functionality, and semantic layer.</dd>
+            <dt>Scoping</dt>
+            <dd>Pulled reports from Looker to map the existing reporting, then worked with product managers and client services to decide what to port and what to retire.</dd>
+            <dt>Building</dt>
+            <dd>Rebuilt the semantic layer in Omni from the LookML, moved logic out of Looker PDTs and into dbt, and recreated the client dashboards.</dd>
+            <dt>Rollout</dt>
+            <dd>Led client trainings so users moved over smoothly.</dd>
+            <dt>Tools</dt>
+            <dd>Looker, LookML, Omni, dbt</dd>
+          </dl>
+        </details>
       </article>
 
       <article class="case">
-        <h3>A dbt project built from the ground up</h3>
-        <p class="context">A dbt ecosystem for the analytics team at a healthcare software platform.</p>
-        <dl>
-          <dt>What I built</dt>
-          <dd>The team’s dbt project from scratch, with modeling governance and testing practices. It now covers 290+ models and 80+ tests.</dd>
-          <dt>Result</dt>
-          <dd>Faster dashboards and queries, from implementing Looker persistent derived tables (PDTs) and re-architecting the LookML models.</dd>
-          <dt>Tools</dt>
-          <dd>dbt, LookML, Looker PDTs, Redshift, Databricks</dd>
-        </dl>
+        <details>
+          <summary><h3>A dbt project built from the ground up</h3>
+            <p class="context">A dbt ecosystem for the analytics team at a healthcare software platform.</p>
+            <span class="more" aria-hidden="true"></span>
+          </summary>
+          <dl>
+            <dt>What I built</dt>
+            <dd>The team’s dbt project from scratch, with modeling governance and testing practices. It now covers 290+ models and 80+ tests.</dd>
+            <dt>Result</dt>
+            <dd>Faster dashboards and queries, from implementing Looker persistent derived tables (PDTs) and re-architecting the LookML models.</dd>
+            <dt>Tools</dt>
+            <dd>dbt, LookML, Looker PDTs, Redshift, Databricks</dd>
+          </dl>
+        </details>
       </article>
 
       <article class="case">
-        <h3>dbt Cloud to dbt Core migration <span class="status">In progress</span></h3>
-        <p class="context">The dbt Cloud Enterprise plan cost five figures a year, and the team already paid for the infrastructure that could replace each piece of it: Databricks, GitHub, and AWS.</p>
-        <dl>
-          <dt>Scheduling</dt>
-          <dd>Databricks Workflows’ native dbt task replaces the dbt Cloud scheduler, with daily, weekly, and monthly runs split by tag.</dd>
-          <dt>CI</dt>
-          <dd>GitHub Actions builds and tests only the models each pull request changes, in a temporary schema, compared against a production manifest kept current in S3.</dd>
-          <dt>Validation</dt>
-          <dd>Confirmed parity between dbt Cloud and dbt Core with automated tests and by comparing the manifest before and after the switch.</dd>
-          <dt>Result so far</dt>
-          <dd>CI has already caught a real bug before merge: a column removed from one dimension table silently broke a model three hops downstream.</dd>
-        </dl>
+        <details>
+          <summary><h3>dbt Cloud to dbt Core migration</h3>
+            <p class="context">The dbt Cloud Enterprise plan cost five figures a year, and the team already paid for the infrastructure that could replace each piece of it: Databricks, GitHub, and AWS.</p>
+            <span class="more" aria-hidden="true"></span>
+          </summary>
+          <dl>
+            <dt>Scheduling</dt>
+            <dd>Databricks Workflows’ native dbt task replaces the dbt Cloud scheduler, with daily, weekly, and monthly runs split by tag.</dd>
+            <dt>CI</dt>
+            <dd>GitHub Actions builds and tests only the models each pull request changes, in a temporary schema, compared against a production manifest kept current in S3.</dd>
+            <dt>Validation</dt>
+            <dd>Confirmed parity between dbt Cloud and dbt Core with automated tests and by comparing the manifest before and after the switch.</dd>
+            <dt>AI assist</dt>
+            <dd>I worked through the Databricks and GitHub Actions setup with Claude Code, which made the migration noticeably faster.</dd>
+            <dt>Result</dt>
+            <dd>CI has already caught a real bug before merge: a column removed from one dimension table silently broke a model three hops downstream.</dd>
+          </dl>
+        </details>
       </article>
     </section>
 
     <section id="writing" aria-labelledby="writing-h">
       <h2 id="writing-h">Writing</h2>
+      <p class="section-intro">Originally published on Towards Data Science.</p>
       <ul class="pieces">
         <li>
           <h3><a href="https://medium.com/data-science/use-web-scraping-and-pandas-for-a-market-analysis-esl-teaching-in-spain-75029dd0a1e5" target="_blank" rel="noopener noreferrer">Web scraping and pandas for a market analysis: ESL teaching in Spain</a></h3>
           <p>Python web scraping and competitive analysis of the ESL teaching market in Spain.</p>
-          <p class="fine">Originally published on Towards Data Science.</p>
         </li>
         <li>
           <h3><a href="https://medium.com/data-science/spains-strict-covid-lockdown-visualized-with-folium-maps-mobile-gps-data-gpx-tracks-and-geo-9628e39bfa0e" target="_blank" rel="noopener noreferrer">Spain’s strict COVID lockdown, visualized with Folium maps and mobile GPS data</a></h3>
           <p>Mobile GPS data and personal GPX tracks, mapped with the Folium Python library to show how movement changed under one of Europe’s most restrictive lockdowns.</p>
-          <p class="fine">Originally published on Towards Data Science.</p>
-        </li>
-        <li>
-          <h3><a href="https://medium.com/data-science/build-interactive-gps-activity-maps-from-gpx-files-using-folium-cf9eebba1fe7" target="_blank" rel="noopener noreferrer">Build interactive GPS activity maps from GPX files using Folium</a></h3>
-          <p>Turns cycling and hiking tracks exported from services like Strava and Garmin into interactive web maps, using gpxpy, pandas, and Folium in Jupyter notebooks.</p>
-          <p class="fine">Originally published on Towards Data Science.</p>
-        </li>
-        <li>
-          <h3><a href="https://medium.com/data-science/data-mine-a-diary-textblob-and-nlkt-to-analyze-your-personal-journal-a7c73f412acc" target="_blank" rel="noopener noreferrer">Data mine a diary: TextBlob and NLTK to analyze your personal journal</a></h3>
-          <p>Text analysis of a 17-year personal journal with TextBlob and pandas: word frequency, common phrases, and how the emotional tone of the entries changed over time.</p>
-          <p class="fine">Originally published on Towards Data Science.</p>
         </li>
       </ul>
+      <details class="more-pieces">
+        <summary><span class="more-label">Show 2 more articles</span></summary>
+        <ul class="pieces">
+        <li>
+            <h3><a href="https://medium.com/data-science/build-interactive-gps-activity-maps-from-gpx-files-using-folium-cf9eebba1fe7" target="_blank" rel="noopener noreferrer">Build interactive GPS activity maps from GPX files using Folium</a></h3>
+            <p>Turns cycling and hiking tracks exported from services like Strava and Garmin into interactive web maps, using gpxpy, pandas, and Folium in Jupyter notebooks.</p>
+          </li>
+        <li>
+            <h3><a href="https://medium.com/data-science/data-mine-a-diary-textblob-and-nlkt-to-analyze-your-personal-journal-a7c73f412acc" target="_blank" rel="noopener noreferrer">Data mine a diary: TextBlob and NLTK to analyze your personal journal</a></h3>
+            <p>Text analysis of a 17-year personal journal with TextBlob and pandas: word frequency, common phrases, and how the emotional tone of the entries changed over time.</p>
+          </li>
+        </ul>
+      </details>
     </section>
 
     <section id="about" aria-labelledby="about-h">
@@ -370,6 +413,7 @@ footer p{margin:0 0 .4rem}
         <div>
           <p>I’m an analytics engineer based in Dénia, Spain, with 15+ years in data. I started at Pandora Internet Radio, growing from ad operations into a senior data analyst role supporting FP&amp;A. Since 2020 I’ve worked fully remote, both on larger data teams and as a team of one, owning the stack end to end. That means wearing a lot of hats: data engineer, analytics engineer, analyst, dashboard builder, and client-facing partner.</p>
           <p>The work I enjoy most is bringing structure to messy data: defining metrics and the governance around them, automating the manual processes teams get stuck with, and setting up data quality alerts so problems get caught before they reach a dashboard. With stakeholders, I like building what actually helps: sometimes a full dashboard that informs their decisions, sometimes just a scheduled CSV export that replaces a manual step.</p>
+          <p>AI is part of how I work every day. I use Claude as a thought partner on technical work: exploring a codebase, reviewing data, working through data models, and debugging. In Omni, I use its AI features to build calculated fields and dashboards faster.</p>
           <p>I’m a U.S. citizen, my hours overlap with U.S. Eastern from 6 AM to 3 PM, and I’m comfortable with 1099 contract arrangements. For nearly five years I also mentored data analytics students at CareerFoundry, and I helped dozens of them land data jobs.</p>
         </div>
         <img src="assets/patrick.jpg" alt="Portrait of Patrick Noonan" onerror="this.remove()">
